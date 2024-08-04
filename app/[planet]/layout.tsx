@@ -1,6 +1,7 @@
 import type { Metadata, ResolvingMetadata } from "next";
 import data from "@/public/data.json";
 import { notFound } from "next/navigation";
+import { capitalize } from "@/utils/utils";
 
 type PlanetLayoutProps = React.PropsWithChildren<{
   params: { planet: string };
@@ -11,7 +12,7 @@ export async function generateMetadata(
   parent: ResolvingMetadata
 ): Promise<Metadata> {
   // read route params
-  const planetName = params.planet;
+  const planetName = capitalize(params.planet);
 
   return {
     title: `☀️Our Lovely ${planetName}🪐`,
@@ -26,7 +27,7 @@ export default function RootLayout({ children, params }: PlanetLayoutProps) {
   }
 
   return (
-    <main className="flex flex-col px-40 pt-32 pb-[3.5rem] overflow-hidden h-[90dvh]">
+    <main className="flex flex-col mx-auto pt-32 pb-[3.5rem] overflow-hidden h-[90dvh] justify-between w-[1100px]">
       {children}
     </main>
   );
