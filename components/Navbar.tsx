@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import { cn } from "@/utils/styleUtils";
+import { cn } from "@/utils/utils";
 
 type NavbarProps = React.ComponentProps<"nav"> & {
   names: string[];
