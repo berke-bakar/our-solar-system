@@ -4,6 +4,7 @@ import data from "@/public/data.json";
 import { notFound } from "next/navigation";
 import InfoBox from "@/components/InfoBox";
 import Button from "@/components/Button";
+import PlanetImage from "@/components/PlanetImage";
 import { cn, capitalize } from "@/utils/utils";
 import { useState } from "react";
 
@@ -24,30 +25,44 @@ export default function page({ params }: Props) {
     setActiveTab(Number(event.currentTarget.id));
   }
 
-  const buttonBgColorClass = `bg-${planetData.name.toLowerCase()} `;
+  const buttonBgColorClass = `bg-${planetData.name.toLowerCase()}`;
+
   const contentName =
     activeTab === 1 ? "overview" : activeTab === 2 ? "structure" : "geology";
-  const content = planetData[contentName].content;
-
-  const imageName =
-    activeTab === 1 ? "planet" : activeTab === 2 ? "internal" : "geology";
-  const imageSrc = planetData.images[imageName];
-
+  const contentText = planetData[contentName].content;
+  const imageSrc =
+    contentName === "geology"
+      ? planetData.images["overview"]
+      : planetData.images[contentName];
   return (
     <>
       <div className="flex items-center justify-between grow">
-        <div className="flex grow justify-center">
-          <Image
+        <PlanetImage>
+          <PlanetImage.MainImage
             src={imageSrc}
             alt={`Representation of ${capitalize(params.planet)}`}
-            width={290}
-            height={290}
-            className="self-center"
+            width={0}
+            height={0}
+            style={{
+              width: "auto",
+              height: "auto",
+              maxHeight: "100%",
+              maxWidth: "100%",
+            }}
+            priority={true}
           />
-        </div>
+          {contentName === "geology" && (
+            <PlanetImage.StructureImage
+              src={planetData.images["geology"]}
+              width={163}
+              height={199}
+              alt={`Surface image of ${capitalize(params.planet)}`}
+            />
+          )}
+        </PlanetImage>
         <section className="flex flex-col gap-6 max-w-[350px]">
           <h1>{planetData.name}</h1>
-          <p className="text-xl opac">{content}</p>
+          <p className="text-xl opac">{contentText}</p>
           <p className="text-gray-700">
             Source:{" "}
             <a

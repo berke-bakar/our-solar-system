@@ -18,8 +18,8 @@
     "radius": "2,439.7 KM",
     "temperature": "430°c",
     "images": {
-      "planet": "/assets/planet-mercury.svg",
-      "internal": "/assets/planet-mercury-internal.svg",
+      "overview": "/assets/planet-mercury.svg",
+      "structure": "/assets/planet-mercury-internal.svg",
       "geology": "/assets/geology-mercury.png"
     }
   },
@@ -42,8 +42,8 @@
     "radius": "6,051.8 KM",
     "temperature": "471°c",
     "images": {
-      "planet": "/assets/planet-venus.svg",
-      "internal": "/assets/planet-venus-internal.svg",
+      "overview": "/assets/planet-venus.svg",
+      "structure": "/assets/planet-venus-internal.svg",
       "geology": "/assets/geology-venus.png"
     }
   },
@@ -66,8 +66,8 @@
     "radius": "6,371 KM",
     "temperature": "16°c",
     "images": {
-      "planet": "/assets/planet-earth.svg",
-      "internal": "/assets/planet-earth-internal.svg",
+      "overview": "/assets/planet-earth.svg",
+      "structure": "/assets/planet-earth-internal.svg",
       "geology": "/assets/geology-earth.png"
     }
   },
@@ -90,8 +90,8 @@
     "radius": "3,389.5 KM",
     "temperature": "-28°c",
     "images": {
-      "planet": "/assets/planet-mars.svg",
-      "internal": "/assets/planet-mars-internal.svg",
+      "overview": "/assets/planet-mars.svg",
+      "structure": "/assets/planet-mars-internal.svg",
       "geology": "/assets/geology-mars.png"
     }
   },
@@ -114,8 +114,8 @@
     "radius": "69,911 KM",
     "temperature": "-108°c",
     "images": {
-      "planet": "/assets/planet-jupiter.svg",
-      "internal": "/assets/planet-jupiter-internal.svg",
+      "overview": "/assets/planet-jupiter.svg",
+      "structure": "/assets/planet-jupiter-internal.svg",
       "geology": "/assets/geology-jupiter.png"
     }
   },
@@ -138,8 +138,8 @@
     "radius": "58,232 KM",
     "temperature": "-138°c",
     "images": {
-      "planet": "/assets/planet-saturn.svg",
-      "internal": "/assets/planet-saturn-internal.svg",
+      "overview": "/assets/planet-saturn.svg",
+      "structure": "/assets/planet-saturn-internal.svg",
       "geology": "/assets/geology-saturn.png"
     }
   },
@@ -162,8 +162,8 @@
     "radius": "25,362 KM",
     "temperature": "-195°c",
     "images": {
-      "planet": "/assets/planet-uranus.svg",
-      "internal": "/assets/planet-uranus-internal.svg",
+      "overview": "/assets/planet-uranus.svg",
+      "structure": "/assets/planet-uranus-internal.svg",
       "geology": "/assets/geology-uranus.png"
     }
   },
@@ -186,33 +186,9 @@
     "radius": "24,622 KM",
     "temperature": "-201°c",
     "images": {
-      "planet": "/assets/planet-neptune.svg",
-      "internal": "/assets/planet-neptune-internal.svg",
+      "overview": "/assets/planet-neptune.svg",
+      "structure": "/assets/planet-neptune-internal.svg",
       "geology": "/assets/geology-neptune.png"
-    }
-  },
-  {
-    "name": "Pluto",
-    "overview": {
-      "content": "Pluto is the ninth-largest and tenth-most-massive known object to directly orbit the Sun. It is a dwarf planet in the Kuiper belt, a ring of bodies beyond the orbit of Neptune. Pluto is made primarily of ice and rock and is smaller than the inner planets. Pluto has roughly one-sixth the mass of Earth's moon, and one-third its volume.",
-      "source": "https://en.wikipedia.org/wiki/Earth"
-    },
-    "structure": {
-      "content": "",
-      "source": "https://en.wikipedia.org/wiki/Pluto#Internal_structure"
-    },
-    "geology": {
-      "content": "",
-      "source": "https://en.wikipedia.org/wiki/Pluto#Surface"
-    },
-    "rotation": "153.28 Hours",
-    "revolution": "247.94 Years",
-    "radius": "6,371 KM",
-    "temperature": "16°c",
-    "images": {
-      "planet": "/assets/planet-earth.svg",
-      "internal": "/assets/planet-earth-internal.svg",
-      "geology": "/assets/geology-earth.png"
     }
   }
 ]
