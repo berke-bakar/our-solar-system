@@ -26,9 +26,28 @@ export default function TwinklingStarsBackground({
     Array.from({ length: count }, (a) => createRef<SVGSVGElement>())
   );
 
-  const rotationRef = useRef(fromValues.rotation);
-  const scaleRef = useRef(fromValues.scale);
-  const alphaRef = useRef(fromValues.alpha);
+  const rotationRef = useRef(
+    Array.from({ length: count }, (a) => {
+      return (
+        fromValues.rotation +
+        Math.random() * (toValues.rotation - fromValues.rotation)
+      );
+    })
+  );
+  const scaleRef = useRef(
+    Array.from({ length: count }, (a) => {
+      return (
+        fromValues.scale + Math.random() * (toValues.scale - fromValues.scale)
+      );
+    })
+  );
+  const alphaRef = useRef(
+    Array.from({ length: count }, (a) => {
+      return (
+        fromValues.alpha + Math.random() * (toValues.alpha - fromValues.alpha)
+      );
+    })
+  );
   const timeRef = useRef(0);
 
   function generatePosition() {
@@ -44,23 +63,31 @@ export default function TwinklingStarsBackground({
     // Clamp time for lerping between 0 and 1
     const animationTime = Math.min(timeRef.current / animDurationMs, 1);
 
-    // Rotate for 2 turns
-    rotationRef.current = lerp(
-      fromValues.rotation,
-      toValues.rotation,
-      animationTime
-    );
-    // Scale up to x2
-    scaleRef.current = lerp(fromValues.scale, toValues.scale, animationTime);
-    // Slowly make it transparent
-    alphaRef.current = lerp(fromValues.alpha, toValues.alpha, animationTime);
-
     // Set new values
     for (let i = 0; i < starRefs.current.length; i++) {
       const element = starRefs.current[i];
-      element.current!.style.rotate = `${rotationRef.current}deg`;
-      element.current!.style.scale = `${scaleRef.current}`;
-      element.current!.style.opacity = `${alphaRef.current}`;
+      // Rotate for 2 turns
+      const currentRotation = lerp(
+        rotationRef.current[i],
+        toValues.rotation,
+        animationTime
+      );
+      // Scale up to x2
+      const currentScale = lerp(
+        scaleRef.current[i],
+        toValues.scale,
+        animationTime
+      );
+      // Slowly make it transparent
+      const currentAlpha = lerp(
+        alphaRef.current[i],
+        toValues.alpha,
+        animationTime
+      );
+
+      element.current!.style.rotate = `${currentRotation}deg`;
+      element.current!.style.scale = `${currentScale}`;
+      element.current!.style.opacity = `${currentAlpha}`;
     }
 
     // Restart animation with new positions
