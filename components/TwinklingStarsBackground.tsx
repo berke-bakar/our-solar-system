@@ -10,20 +10,34 @@ type AnimatableProps = {
 };
 
 type AnimationProps = {
-  animDurationMs: number;
+  avgAnimDurationMs: number;
+  animVarianceMs: number;
   fromValues: AnimatableProps;
   toValues: AnimatableProps;
   count: number;
 };
 
 export default function TwinklingStarsBackground({
-  animDurationMs,
+  avgAnimDurationMs,
+  animVarianceMs,
   fromValues,
   toValues,
   count,
 }: AnimationProps) {
   const starRefs = useRef(
     Array.from({ length: count }, (a) => createRef<SVGSVGElement>())
+  );
+
+  const starAnimTimeLimitRefs = useRef(
+    Array.from({ length: count }, (a) => {
+      return avgAnimDurationMs + (Math.random() - 0.5) * animVarianceMs;
+    })
+  );
+
+  const starAnimTimeRef = useRef(
+    Array.from({ length: count }, (a) => {
+      return 0;
+    })
   );
 
   const rotationRef = useRef(
@@ -48,37 +62,46 @@ export default function TwinklingStarsBackground({
       );
     })
   );
-  const timeRef = useRef(0);
 
-  function generatePosition() {
+  function generateStarInfo() {
     const genTop = Math.round(5 + Math.random() * 90);
     const genLeft = Math.round(5 + Math.random() * 90);
+    const genRotate =
+      fromValues.rotation +
+      Math.random() * (toValues.rotation - fromValues.rotation);
+    const genScale =
+      fromValues.scale + Math.random() * (toValues.scale - fromValues.scale);
+    const genAlpha =
+      fromValues.alpha + Math.random() * (toValues.alpha - fromValues.alpha);
 
-    return { top: genTop, left: genLeft };
+    return {
+      top: genTop,
+      left: genLeft,
+      rotate: genRotate,
+      scale: genScale,
+      alpha: genAlpha,
+    };
   }
 
   useAnimationFrame((timestamp, delta) => {
-    // Increase time, rotation and scale
-    timeRef.current += delta;
-    // Clamp time for lerping between 0 and 1
-    const animationTime = Math.min(timeRef.current / animDurationMs, 1);
-
     // Set new values
     for (let i = 0; i < starRefs.current.length; i++) {
       const element = starRefs.current[i];
-      // Rotate for 2 turns
+      starAnimTimeRef.current[i] += delta;
+      const animationTime = Math.min(
+        starAnimTimeRef.current[i] / starAnimTimeLimitRefs.current[i],
+        1
+      );
       const currentRotation = lerp(
         rotationRef.current[i],
         toValues.rotation,
         animationTime
       );
-      // Scale up to x2
       const currentScale = lerp(
         scaleRef.current[i],
         toValues.scale,
         animationTime
       );
-      // Slowly make it transparent
       const currentAlpha = lerp(
         alphaRef.current[i],
         toValues.alpha,
@@ -88,26 +111,34 @@ export default function TwinklingStarsBackground({
       element.current!.style.rotate = `${currentRotation}deg`;
       element.current!.style.scale = `${currentScale}`;
       element.current!.style.opacity = `${currentAlpha}`;
-    }
 
-    // Restart animation with new positions
-    if (timeRef.current >= animDurationMs) {
-      // Generate new position for each star
-      for (let i = 0; i < starRefs.current.length; i++) {
-        const element = starRefs.current[i];
-        const newPos = generatePosition();
-        element.current!.style.top = `${newPos.top}%`;
-        element.current!.style.left = `${newPos.left}%`;
+      // if animation duration is over for the current star
+      // generate new info for the star
+      if (starAnimTimeRef.current[i] >= starAnimTimeLimitRefs.current[i]) {
+        const newInfo = generateStarInfo();
+
+        element.current!.style.top = `${newInfo.top}%`;
+        element.current!.style.left = `${newInfo.left}%`;
+
+        // Change initial values for the next round of animation
+        rotationRef.current[i] = newInfo.rotate;
+        scaleRef.current[i] = newInfo.scale;
+        alphaRef.current[i] = newInfo.alpha;
+
+        // Reset time
+        starAnimTimeRef.current[i] = 0;
+        // Change animation duration
+        starAnimTimeLimitRefs.current[i] =
+          avgAnimDurationMs + (Math.random() - 0.5) * animVarianceMs;
       }
-
-      // Reset time
-      timeRef.current = 0;
     }
   });
 
   return (
     <div className="absolute w-full h-full -z-10">
       {starRefs.current.map((val, ind) => {
+        const top = Math.round(5 + Math.random() * 90);
+        const left = Math.round(5 + Math.random() * 90);
         return (
           <svg
             viewBox="0 0 24.00 24.00"
@@ -117,6 +148,10 @@ export default function TwinklingStarsBackground({
             transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)"
             ref={starRefs.current[ind]}
             className={cn("absolute w-8 scale-50")}
+            style={{
+              top: `${top}%`,
+              left: `${left}%`,
+            }}
             key={ind}
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>
