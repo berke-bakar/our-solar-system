@@ -27,7 +27,7 @@ export default function RootLayout({ children, params }: PlanetLayoutProps) {
   }
 
   return (
-    <main className="flex flex-col mx-auto pt-32 pb-[3.5rem] overflow-hidden h-[90dvh] justify-between w-[1100px]">
+    <main className="flex flex-col mx-auto pt-32 pb-[3.5rem] overflow-hidden h-[90dvh] w-[1100px] gap-6">
       {children}
     </main>
   );

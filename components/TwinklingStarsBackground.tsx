@@ -79,7 +79,7 @@ export default function TwinklingStarsBackground({
   });
 
   return (
-    <div className="absolute w-full h-full">
+    <div className="absolute w-full h-full -z-10">
       {starRefs.current.map((val, ind) => {
         return (
           <svg

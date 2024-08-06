@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import data from "@/public/data.json";
 import { notFound } from "next/navigation";
 import InfoBox from "@/components/InfoBox";
@@ -7,11 +6,19 @@ import Button from "@/components/Button";
 import PlanetImage from "@/components/PlanetImage";
 import { cn, capitalize } from "@/utils/utils";
 import { useState } from "react";
+import Switch from "@/components/Switch";
 
 type Props = { params: { planet: string } };
+enum PerspectiveEnum {
+  "2D" = "2D",
+  "3D" = "3D",
+}
 
 export default function page({ params }: Props) {
   const [activeTab, setActiveTab] = useState<number>(1);
+  const [perspective, setPerspective] = useState<PerspectiveEnum>(
+    PerspectiveEnum["2D"]
+  );
 
   const planetData = data.find(
     (val) => val.name.toLowerCase() === params.planet.toLowerCase()
@@ -34,32 +41,45 @@ export default function page({ params }: Props) {
     contentName === "geology"
       ? planetData.images["overview"]
       : planetData.images[contentName];
+
   return (
     <>
       <div className="flex items-center justify-between grow">
-        <PlanetImage>
-          <PlanetImage.MainImage
-            src={imageSrc}
-            alt={`Representation of ${capitalize(params.planet)}`}
-            width={0}
-            height={0}
-            style={{
-              width: "auto",
-              height: "auto",
-              maxHeight: "100%",
-              maxWidth: "100%",
-            }}
-            priority={true}
-          />
-          {contentName === "geology" && (
-            <PlanetImage.StructureImage
-              src={planetData.images["geology"]}
-              width={163}
-              height={199}
-              alt={`Surface image of ${capitalize(params.planet)}`}
+        <div className="flex flex-col grow gap-24 justify-center items-center">
+          <PlanetImage>
+            <PlanetImage.MainImage
+              src={imageSrc}
+              alt={`Representation of ${capitalize(params.planet)}`}
+              width={0}
+              height={0}
+              style={{
+                width: "auto",
+                height: "auto",
+                maxHeight: "100%",
+                maxWidth: "100%",
+              }}
+              priority={true}
             />
-          )}
-        </PlanetImage>
+            {contentName === "geology" && (
+              <PlanetImage.StructureImage
+                src={planetData.images["geology"]}
+                width={163}
+                height={199}
+                alt={`Surface image of ${capitalize(params.planet)}`}
+              />
+            )}
+          </PlanetImage>
+          <Switch
+            options={Object.keys(PerspectiveEnum)}
+            onChange={(val) => {
+              setPerspective(val as PerspectiveEnum);
+            }}
+            activeClass={buttonBgColorClass}
+            inactiveClass={`text-${planetData.name.toLowerCase()}`}
+            selected={perspective}
+          />
+        </div>
+
         <section className="flex flex-col gap-6 max-w-[350px]">
           <h1>{planetData.name}</h1>
           <p className="text-xl opac">{contentText}</p>
