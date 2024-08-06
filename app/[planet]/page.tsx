@@ -5,20 +5,32 @@ import InfoBox from "@/components/InfoBox";
 import Button from "@/components/Button";
 import PlanetImage from "@/components/PlanetImage";
 import { cn, capitalize } from "@/utils/utils";
-import { useState } from "react";
+import { Suspense, useState } from "react";
 import Switch from "@/components/Switch";
+import { Canvas } from "@react-three/fiber";
+import { OrbitControls, PresentationControls } from "@react-three/drei";
+import Planet from "@/components/Planet";
+import Loader from "@/components/Loader";
 
 type Props = { params: { planet: string } };
 enum PerspectiveEnum {
   "2D" = "2D",
   "3D" = "3D",
 }
+type ShadersType = {
+  vertex: string | null;
+  fragment: string | null;
+};
 
 export default function page({ params }: Props) {
   const [activeTab, setActiveTab] = useState<number>(1);
   const [perspective, setPerspective] = useState<PerspectiveEnum>(
-    PerspectiveEnum["2D"]
+    PerspectiveEnum["2D"] // TODO: Change later
   );
+  const [shaders, setShaders] = useState<ShadersType>({
+    vertex: null,
+    fragment: null,
+  });
 
   const planetData = data.find(
     (val) => val.name.toLowerCase() === params.planet.toLowerCase()
@@ -46,33 +58,69 @@ export default function page({ params }: Props) {
     <>
       <div className="flex items-center justify-between grow">
         <div className="flex flex-col grow gap-24 justify-center items-center">
-          <PlanetImage>
-            <PlanetImage.MainImage
-              src={imageSrc}
-              alt={`Representation of ${capitalize(params.planet)}`}
-              width={0}
-              height={0}
-              style={{
-                width: "auto",
-                height: "auto",
-                maxHeight: "100%",
-                maxWidth: "100%",
-              }}
-              priority={true}
-            />
-            {contentName === "geology" && (
-              <PlanetImage.StructureImage
-                src={planetData.images["geology"]}
-                width={163}
-                height={199}
-                alt={`Surface image of ${capitalize(params.planet)}`}
+          {perspective === PerspectiveEnum["2D"] && (
+            <PlanetImage>
+              <PlanetImage.MainImage
+                src={imageSrc}
+                alt={`Representation of ${capitalize(params.planet)}`}
+                width={0}
+                height={0}
+                style={{
+                  width: "auto",
+                  height: "auto",
+                  maxHeight: "100%",
+                  maxWidth: "100%",
+                }}
+                priority={true}
               />
-            )}
-          </PlanetImage>
+              {contentName === "geology" && (
+                <PlanetImage.StructureImage
+                  src={planetData.images["geology"]}
+                  width={163}
+                  height={199}
+                  alt={`Surface image of ${capitalize(params.planet)}`}
+                />
+              )}
+            </PlanetImage>
+          )}
+          {perspective === PerspectiveEnum["3D"] && (
+            <div className="h-[500px] w-full">
+              <Canvas>
+                {/* TODO: Remove OrbitControls later */}
+                <OrbitControls makeDefault />
+                <ambientLight intensity={0.1} />
+                <directionalLight color="yellow" position={[-10, 0, 2]} />
+                <PresentationControls>
+                  <Suspense fallback={<Loader />}>
+                    {/* <Planet name={params.planet.toLowerCase()} /> */}
+                    <Planet
+                      name={"earth"}
+                      vertex={shaders.vertex}
+                      fragment={shaders.fragment}
+                    />
+                  </Suspense>
+                </PresentationControls>
+              </Canvas>
+            </div>
+          )}
           <Switch
             options={Object.keys(PerspectiveEnum)}
-            onChange={(val) => {
+            onChange={async (val) => {
+              // TODO: Uncomment later
+              // Get shaders on demand
+              // const vertexShader = await import(
+              //   `/shaders/${params.planet.toLowerCase()}/vertex.glsl`
+              // );
+              // const fragmentShader = await import(
+              //   `/shaders/${params.planet.toLowerCase()}/fragment.glsl`
+              // );
+              const vertexShader = (await import("/shaders/earth/vertex.glsl"))
+                .default;
+              const fragmentShader = (
+                await import("/shaders/earth/fragment.glsl")
+              ).default;
               setPerspective(val as PerspectiveEnum);
+              setShaders({ vertex: vertexShader, fragment: fragmentShader });
             }}
             activeClass={buttonBgColorClass}
             inactiveClass={`text-${planetData.name.toLowerCase()}`}

@@ -27,7 +27,6 @@ const Switch = ({
 
   const activeOptionStyle = `${activeClass} text-white`;
   const inactiveOptionStyle = `${inactiveClass}`;
-  console.log(inactiveOptionStyle);
 
   return (
     <div
