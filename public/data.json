@@ -21,7 +21,20 @@
       "overview": "/assets/planet-mercury.svg",
       "structure": "/assets/planet-mercury-internal.svg",
       "geology": "/assets/geology-mercury.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/mercury/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Venus",
@@ -45,7 +58,20 @@
       "overview": "/assets/planet-venus.svg",
       "structure": "/assets/planet-venus-internal.svg",
       "geology": "/assets/geology-venus.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/venus/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Earth",
@@ -69,7 +95,38 @@
       "overview": "/assets/planet-earth.svg",
       "structure": "/assets/planet-earth-internal.svg",
       "geology": "/assets/geology-earth.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uDayTexture",
+        "src": "/earth/day.jpg"
+      },
+      {
+        "key": "uNightTexture",
+        "src": "/earth/night.jpg"
+      },
+      {
+        "key": "uSpecularCloudsTexture",
+        "src": "/earth/specularClouds.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#00aaff"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#ff6600"
+      }
+    ]
   },
   {
     "name": "Mars",
@@ -93,7 +150,20 @@
       "overview": "/assets/planet-mars.svg",
       "structure": "/assets/planet-mars-internal.svg",
       "geology": "/assets/geology-mars.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/mars/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Jupiter",
@@ -117,7 +187,20 @@
       "overview": "/assets/planet-jupiter.svg",
       "structure": "/assets/planet-jupiter-internal.svg",
       "geology": "/assets/geology-jupiter.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/jupiter/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Saturn",
@@ -141,7 +224,20 @@
       "overview": "/assets/planet-saturn.svg",
       "structure": "/assets/planet-saturn-internal.svg",
       "geology": "/assets/geology-saturn.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/saturn/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Uranus",
@@ -165,7 +261,20 @@
       "overview": "/assets/planet-uranus.svg",
       "structure": "/assets/planet-uranus-internal.svg",
       "geology": "/assets/geology-uranus.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/uranus/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   },
   {
     "name": "Neptune",
@@ -189,6 +298,19 @@
       "overview": "/assets/planet-neptune.svg",
       "structure": "/assets/planet-neptune-internal.svg",
       "geology": "/assets/geology-neptune.png"
-    }
+    },
+    "textures": [
+      {
+        "key": "uTexture",
+        "src": "/neptune/texture.jpg"
+      }
+    ],
+    "uniforms": [
+      {
+        "type": "vec3",
+        "key": "uSunDirection",
+        "value": [0.5, 0, 0.9]
+      }
+    ]
   }
 ]

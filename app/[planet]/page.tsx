@@ -18,8 +18,8 @@ enum PerspectiveEnum {
   "3D" = "3D",
 }
 type ShadersType = {
-  vertex: string | null;
-  fragment: string | null;
+  vertex: string | undefined;
+  fragment: string | undefined;
 };
 
 export default function page({ params }: Props) {
@@ -28,8 +28,8 @@ export default function page({ params }: Props) {
     PerspectiveEnum["2D"] // TODO: Change later
   );
   const [shaders, setShaders] = useState<ShadersType>({
-    vertex: null,
-    fragment: null,
+    vertex: undefined,
+    fragment: undefined,
   });
 
   const planetData = data.find(
@@ -92,11 +92,11 @@ export default function page({ params }: Props) {
                 <directionalLight color="yellow" position={[-10, 0, 2]} />
                 <PresentationControls>
                   <Suspense fallback={<Loader />}>
-                    {/* <Planet name={params.planet.toLowerCase()} /> */}
                     <Planet
-                      name={"earth"}
                       vertex={shaders.vertex}
                       fragment={shaders.fragment}
+                      textures={planetData!.textures}
+                      uniforms={planetData!.uniforms}
                     />
                   </Suspense>
                 </PresentationControls>
@@ -108,17 +108,17 @@ export default function page({ params }: Props) {
             onChange={async (val) => {
               // TODO: Uncomment later
               // Get shaders on demand
-              // const vertexShader = await import(
-              //   `/shaders/${params.planet.toLowerCase()}/vertex.glsl`
-              // );
-              // const fragmentShader = await import(
-              //   `/shaders/${params.planet.toLowerCase()}/fragment.glsl`
-              // );
-              const vertexShader = (await import("/shaders/earth/vertex.glsl"))
-                .default;
-              const fragmentShader = (
-                await import("/shaders/earth/fragment.glsl")
+              const vertexShader = (
+                await import(
+                  `@/shaders/${params.planet.toLowerCase()}/vertex.glsl`
+                )
               ).default;
+              const fragmentShader = (
+                await import(
+                  `@/shaders/${params.planet.toLowerCase()}/fragment.glsl`
+                )
+              ).default;
+
               setPerspective(val as PerspectiveEnum);
               setShaders({ vertex: vertexShader, fragment: fragmentShader });
             }}
