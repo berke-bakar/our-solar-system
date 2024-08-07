@@ -28,7 +28,7 @@ export default function FloatingButton({}: Props) {
         <RoundedBox
           position={new Vector3(...buttonPosition)}
           args={[3, 1, 1]} // Width, height, depth. Default is [1, 1, 1]
-          radius={0.05} // Radius of the rounded corners. Default is 0.05
+          radius={0.3} // Radius of the rounded corners. Default is 0.05
           smoothness={8} // The number of curve segments. Default is 4
           bevelSegments={8} // The number of bevel segments. Default is 4, setting it to 0 removes the bevel, as a result the texture is applied to the whole geometry.
           creaseAngle={0.8} // Smooth normals everywhere except faces that meet at an angle greater than the crease angle
@@ -39,10 +39,7 @@ export default function FloatingButton({}: Props) {
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
         >
-          <meshBasicMaterial
-            color="#6f2ed6"
-            // wireframe
-          />
+          <meshBasicMaterial color="#6f2ed6" />
           <Html
             center
             className="font-spartan select-none cursor-pointer font-bold text-xl min-w-[13ch] text-center"
