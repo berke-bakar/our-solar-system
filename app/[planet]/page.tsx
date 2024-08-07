@@ -106,7 +106,6 @@ export default function page({ params }: Props) {
           <Switch
             options={Object.keys(PerspectiveEnum)}
             onChange={async (val) => {
-              // TODO: Uncomment later
               // Get shaders on demand
               const vertexShader = (
                 await import(
@@ -145,10 +144,13 @@ export default function page({ params }: Props) {
             <Button
               id="1"
               prefix={"01"}
-              className={cn({
-                "hover:bg-hover": activeTab !== 1,
-                [buttonBgColorClass]: activeTab === 1,
-              })}
+              className={cn(
+                {
+                  "hover:bg-hover": activeTab !== 1,
+                  [buttonBgColorClass]: activeTab === 1,
+                },
+                "transition-colors ease-in-out duration-500"
+              )}
               onClick={handleClick}
             >
               Overview
@@ -156,10 +158,13 @@ export default function page({ params }: Props) {
             <Button
               id="2"
               prefix={"02"}
-              className={cn({
-                "hover:bg-hover": activeTab !== 2,
-                [buttonBgColorClass]: activeTab === 2,
-              })}
+              className={cn(
+                {
+                  "hover:bg-hover": activeTab !== 2,
+                  [buttonBgColorClass]: activeTab === 2,
+                },
+                "transition-colors ease-in-out duration-500"
+              )}
               onClick={handleClick}
             >
               Internal Structure
@@ -167,10 +172,13 @@ export default function page({ params }: Props) {
             <Button
               id="3"
               prefix={"03"}
-              className={cn({
-                "hover:bg-hover": activeTab !== 3,
-                [buttonBgColorClass]: activeTab === 3,
-              })}
+              className={cn(
+                {
+                  "hover:bg-hover": activeTab !== 3,
+                  [buttonBgColorClass]: activeTab === 3,
+                },
+                "transition-colors ease-in-out duration-500"
+              )}
               onClick={handleClick}
             >
               Surface Geology

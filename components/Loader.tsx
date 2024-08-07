@@ -1,6 +1,14 @@
+import { cn } from "@/utils/utils";
 import { Html, useProgress } from "@react-three/drei";
 
-export default function Loader() {
+type LoaderProps = React.ComponentProps<typeof Html>;
+
+export default function Loader({ className, ...props }: LoaderProps) {
   const { progress } = useProgress();
-  return <Html center>{progress} % loaded</Html>;
+
+  return (
+    <Html center className={cn("animate-pulse", className)} {...props}>
+      Loading...{progress}%
+    </Html>
+  );
 }
