@@ -1,19 +1,33 @@
+import { cn } from "@/utils/utils";
 import { Float, Html, RoundedBox, useCursor } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
+import { ThreeEvent, useThree } from "@react-three/fiber";
 import { useControls } from "leva";
-import Link from "next/link";
-import { redirect } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 import { Mesh, Vector3 } from "three";
 
-type Props = {};
+type FloatingButtonProps = {
+  rotationIntensity?: number | undefined;
+  floatingRange?: [(number | undefined)?, (number | undefined)?] | undefined;
+  floatIntensity?: number | undefined;
+  onClick?: ((event: ThreeEvent<MouseEvent>) => void) | undefined;
+  className: string;
+  color: string;
+} & React.PropsWithChildren;
 
-export default function FloatingButton({}: Props) {
+export default function FloatingButton({
+  rotationIntensity,
+  floatIntensity,
+  floatingRange,
+  onClick,
+  className,
+  children,
+  color,
+}: FloatingButtonProps) {
   const { camera } = useThree();
   const boxRef = useRef<Mesh>();
   const [hovered, setHovered] = useState(false);
   const { buttonPosition } = useControls({
-    buttonPosition: [-7, 33, 0],
+    buttonPosition: [-7, 32, 0],
   });
 
   useCursor(hovered);
@@ -22,8 +36,16 @@ export default function FloatingButton({}: Props) {
     boxRef.current!.lookAt(camera.position);
   });
 
+  function handleClick(e: ThreeEvent<MouseEvent>) {
+    if (onClick) onClick(e);
+  }
+
   return (
-    <Float rotationIntensity={0.5} floatingRange={[-0.5, 0.5]}>
+    <Float
+      rotationIntensity={rotationIntensity}
+      floatingRange={floatingRange}
+      floatIntensity={floatIntensity}
+    >
       <group>
         <RoundedBox
           position={new Vector3(...buttonPosition)}
@@ -33,18 +55,13 @@ export default function FloatingButton({}: Props) {
           bevelSegments={8} // The number of bevel segments. Default is 4, setting it to 0 removes the bevel, as a result the texture is applied to the whole geometry.
           creaseAngle={0.8} // Smooth normals everywhere except faces that meet at an angle greater than the crease angle
           ref={boxRef}
-          onClick={() => {
-            redirect("/mercury");
-          }}
+          onClick={handleClick}
           onPointerEnter={() => setHovered(true)}
           onPointerLeave={() => setHovered(false)}
         >
-          <meshBasicMaterial color="#6f2ed6" />
-          <Html
-            center
-            className="font-spartan select-none cursor-pointer font-bold text-xl min-w-[13ch] text-center"
-          >
-            <Link href={"/mercury"}>Start Journey</Link>
+          <meshBasicMaterial color={color} />
+          <Html center className={cn(className)}>
+            {children}
           </Html>
         </RoundedBox>
       </group>
