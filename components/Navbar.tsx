@@ -21,7 +21,7 @@ export default function Navbar({
   return (
     <nav
       className={cn(
-        "flex flex-row h-[85px] border-b-[1px] items-center px-8 border-gray-700 relative top-0 z-10",
+        "flex flex-row h-[85px] w-full border-b-[1px] items-center px-8 border-gray-700 absolute top-0 z-10",
         className
       )}
       {...props}

@@ -35,7 +35,7 @@ export default function MainExperience({}: MainExperienceProps) {
   const router = useRouter();
 
   return (
-    <div className="h-[90dvh]  w-full">
+    <>
       <Canvas>
         {/* TODO: Disable later */}
         {/* <Leva /> */}
@@ -84,7 +84,6 @@ export default function MainExperience({}: MainExperienceProps) {
             }
             color="#6f2ed6"
             onClick={(e) => {
-              console.log("Clicked");
               router.push("/mercury");
             }}
           >
@@ -102,6 +101,6 @@ export default function MainExperience({}: MainExperienceProps) {
           </Html>
         </Suspense>
       </Canvas>
-    </div>
+    </>
   );
 }

@@ -4,6 +4,7 @@ import "./reset.css";
 import Navbar from "@/components/Navbar";
 import data from "@/public/data.json";
 import TwinklingStarsBackground from "@/components/TwinklingStarsBackground";
+import FooterComp from "@/components/FooterComp";
 
 export const metadata: Metadata = {
   title: "☀️Our Lovely System🪐",
@@ -33,6 +34,7 @@ export default function RootLayout({
           links={planetNames}
         />
         {children}
+        <FooterComp />
       </body>
     </html>
   );

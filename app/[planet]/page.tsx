@@ -134,6 +134,7 @@ export default function page({ params }: Props) {
             Source:{" "}
             <a
               rel="noopener noreferrer"
+              target="_blank"
               href={planetData.overview.source}
               className="font-bold underline text-white"
             >
