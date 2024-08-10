@@ -1,8 +1,9 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { cn } from "@/utils/utils";
 import BurgerIcon from "./BurgerIcon";
+import { createPortal } from "react-dom";
 
 type NavbarProps = React.ComponentProps<"nav"> & {
   names: string[];
@@ -17,9 +18,10 @@ export default function Navbar({
   className,
   ...props
 }: NavbarProps) {
+  const [showDrawer, setShowDrawer] = useState(false);
+
   if (names.length != links.length)
     throw new Error("names and links props must have same length");
-
   return (
     <nav
       className={cn(
@@ -47,7 +49,48 @@ export default function Navbar({
           );
         })}
       </ul>
-      <BurgerIcon className={"md:hidden"} />
+      <BurgerIcon
+        className={"md:hidden"}
+        onClick={() => {
+          setShowDrawer(!showDrawer);
+          document.body.classList.toggle("overflow-hidden");
+        }}
+      />
+      {
+        <div
+          className={cn(
+            "absolute top-[68px] md:top-[160px] lg:top-[85px] z-50 transition-all w-dvw h-dvh px-6 bg-[#070722] duration-700",
+            {
+              "-left-full": !showDrawer,
+              "left-0": showDrawer,
+            }
+          )}
+          onClick={() => {
+            setShowDrawer(false);
+            document.body.classList.remove("overflow-hidden");
+          }}
+        >
+          <ul className="mt-6">
+            {names.map((val, ind) => {
+              return (
+                <li key={ind} className="list-none border-b-[1px] py-5">
+                  <Link href={links[ind]} className="flex gap-6">
+                    <div
+                      className={cn(
+                        "rounded-full w-[20px] h-[20px]",
+                        `bg-${names[ind]}`
+                      )}
+                    ></div>
+                    <p className="font-spartan text-sm uppercase text-white font-bold">
+                      {val}
+                    </p>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      }
     </nav>
   );
 }
