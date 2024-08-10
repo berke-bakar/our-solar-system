@@ -36,7 +36,12 @@ function MainImage(props: PlanetMainImageProps) {
 }
 
 function StructureImage({ className, ...props }: PlanetMainImageProps) {
-  return <Image className={cn("absolute top-[60%]", className)} {...props} />;
+  return (
+    <Image
+      className={cn("absolute top-[40%] lg:top-[60%]", className)}
+      {...props}
+    />
+  );
 }
 
 PlanetImage.MainImage = MainImage;
