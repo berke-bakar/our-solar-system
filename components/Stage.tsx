@@ -34,7 +34,7 @@ export default function Stage({}: Props) {
     },
   });
 
-  const handleResize = (e) => {
+  const handleResize = (e: MediaQueryListEvent) => {
     if (e.matches) {
       if (e.media === isDesktop.media) {
         console.log(cameraRef.current);

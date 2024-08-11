@@ -1,6 +1,5 @@
 "use client";
 import { useTexture } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
 import { Vector3 } from "three";
 
 type MoonProps = {
@@ -27,3 +26,5 @@ export default function Moon({
     </mesh>
   );
 }
+
+useTexture.preload("/moon/texture.jpg");

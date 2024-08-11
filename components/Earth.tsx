@@ -26,13 +26,13 @@ export default function Earth({
   heightSegments,
   sunDirection,
 }: EarthProps) {
-  const earthRef = useRef<Mesh>();
+  const earthRef = useRef<Mesh>(null);
   const earthGeometry = useMemo(() => {
     return new SphereGeometry(radius, widthSegments, heightSegments);
   }, [radius, heightSegments, widthSegments]);
 
   const [dayTexture, nightTexture, specularTexture] = useTexture([
-    "/earth/day_8k.jpg",
+    "/earth/day.jpg",
     "/earth/night.jpg",
     "/earth/specularClouds.jpg",
   ]);

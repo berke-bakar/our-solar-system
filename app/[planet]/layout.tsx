@@ -26,7 +26,5 @@ export default function RootLayout({ children, params }: PlanetLayoutProps) {
     notFound();
   }
 
-  return (
-    <main className="mt-[68px] md:mt-[160px] lg:mt-[85px]">{children}</main>
-  );
+  return <main>{children}</main>;
 }

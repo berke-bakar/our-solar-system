@@ -97,7 +97,7 @@ export default function page({ params }: Props) {
       </div>
 
       <div className="flex flex-col lg:flex-row lg:justify-center lg:max-w-[1110px] lg:mx-auto lg:mt-[210px]">
-        <div className="flex flex-col justify-center items-center lg:grow lg:gap-4">
+        <div className="flex flex-col justify-center items-center lg:grow lg:gap-4 mb-4 lg:mb-0">
           {perspective === PerspectiveEnum["2D"] && (
             <PlanetImage className="max-h-[304px] lg:grow lg:max-h-full aspect-square">
               <PlanetImage.MainImage
@@ -248,7 +248,7 @@ export default function page({ params }: Props) {
           </div>
         </section>
       </div>
-      <div className="flex flex-col w-full px-6 gap-2 md:flex-row md:gap-3 md:justify-center lg:max-w-[1110px] lg:mx-auto lg:gap-[30px] lg:px-0 lg:mt-20">
+      <div className="flex flex-col w-full px-6 mb-12 gap-2 md:flex-row md:gap-3 md:justify-center lg:max-w-[1110px] lg:mx-auto lg:gap-[30px] lg:px-0 lg:mt-20">
         <InfoBox title="Rotation Time" value={planetData.rotation} />
         <InfoBox title="Revolution Time" value={planetData.revolution} />
         <InfoBox title="Radius" value={planetData.radius} />
