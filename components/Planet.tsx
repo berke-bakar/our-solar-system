@@ -18,9 +18,9 @@ type TextureType = {
 };
 
 type UniformType = {
-  type: "texture" | "float" | "vec2" | "vec3" | "vec4" | "color";
+  type: string;
   key: string;
-  value: any | any[];
+  value: any | unknown[];
 };
 
 type PlanetProps = {
