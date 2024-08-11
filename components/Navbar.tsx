@@ -3,7 +3,7 @@ import Link from "next/link";
 import React, { useState } from "react";
 import { cn } from "@/utils/utils";
 import BurgerIcon from "./BurgerIcon";
-import { createPortal } from "react-dom";
+import { usePathname } from "next/navigation";
 
 type NavbarProps = React.ComponentProps<"nav"> & {
   names: string[];
@@ -19,6 +19,9 @@ export default function Navbar({
   ...props
 }: NavbarProps) {
   const [showDrawer, setShowDrawer] = useState(false);
+  const pathname = usePathname();
+
+  const isMobile = window.matchMedia("(max-width: 768px)").matches;
 
   if (names.length != links.length)
     throw new Error("names and links props must have same length");
@@ -35,10 +38,21 @@ export default function Navbar({
       <Link href={"/"}>
         <p className="text-[1.75rem] font-antonio uppercase">{title}</p>
       </Link>
-      <ul className={cn("hidden", "md:flex md:gap-8")}>
+      <ul
+        className={cn("hidden", "md:flex md:gap-8 lg:h-full lg:items-center")}
+      >
         {names.map((val, ind) => {
           return (
-            <li key={ind} className="list-none">
+            <li
+              key={ind}
+              className={cn(
+                "list-none",
+                {
+                  "border-b-2": pathname === `/${val}`,
+                },
+                `border-b-${val}`
+              )}
+            >
               <Link
                 href={links[ind]}
                 className="uppercase font-spartan font-bold hover:opacity-100 opacity-75 text-s transition-opacity leading-6 tracking-[1px]"
@@ -56,10 +70,10 @@ export default function Navbar({
           document.body.classList.toggle("overflow-hidden");
         }}
       />
-      {
+      {isMobile && (
         <div
           className={cn(
-            "absolute top-[68px] md:top-[160px] lg:top-[85px] z-50 transition-all w-dvw h-dvh px-6 bg-[#070722] duration-700",
+            "absolute top-[68px] md:top-[160px] lg:top-[85px] transition-all w-dvw h-dvh px-6 bg-[#070722] duration-700",
             {
               "-left-full": !showDrawer,
               "left-0": showDrawer,
@@ -90,7 +104,7 @@ export default function Navbar({
             })}
           </ul>
         </div>
-      }
+      )}
     </nav>
   );
 }

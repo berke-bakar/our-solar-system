@@ -4,9 +4,9 @@ type FooterProps = {};
 
 export default function Footer({}: FooterProps) {
   return (
-    <footer className="absolute w-full z-10 bottom-1 grid grid-cols-3">
+    <footer className="absolute w-full z-10 bottom-0 grid grid-cols-2 md:grid-cols-3 items-end py-2">
       <div className="grow pl-2">
-        Planet textures from{" "}
+        Textures from{" "}
         <a
           rel="noopener noreferrer"
           target="_blank"
@@ -16,10 +16,10 @@ export default function Footer({}: FooterProps) {
           Solar System Scope
         </a>
       </div>
-      <div className="grow text-center hover:animate-pulse cursor-pointer">
+      <div className="grow text-end pr-2 md:pr-0 md:text-center hover:animate-pulse cursor-pointer ">
         Made with Love❤️
       </div>
-      <div className="grow text-end pr-2">
+      <div className="grow text-end pr-2 hidden md:block">
         <a
           rel="noopener noreferrer"
           target="_blank"
