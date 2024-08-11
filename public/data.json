@@ -33,6 +33,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#ada8a5"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#68696d"
       }
     ]
   },
@@ -69,7 +79,17 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#e7d520"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#a57c1b"
       }
     ]
   },
@@ -114,7 +134,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -162,6 +182,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#451804"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#c1440e"
       }
     ]
   },
@@ -199,6 +229,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#d8ca9d"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#c99039"
       }
     ]
   },
@@ -236,6 +276,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#e2bf7d"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#c3924f"
       }
     ]
   },
@@ -273,6 +323,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#afdbf5"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#2e84ce"
       }
     ]
   },
@@ -310,6 +370,16 @@
         "type": "vec3",
         "key": "uSunDirection",
         "value": [0.5, 0, 0.9]
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereDayColor",
+        "value": "#477efd"
+      },
+      {
+        "type": "color",
+        "key": "uAtmosphereTwilightColor",
+        "value": "#1f2255"
       }
     ]
   }

@@ -5,12 +5,14 @@ import InfoBox from "@/components/InfoBox";
 import Button from "@/components/Button";
 import PlanetImage from "@/components/PlanetImage";
 import { cn, capitalize } from "@/utils/utils";
-import { Suspense, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import Switch from "@/components/Switch";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, PresentationControls } from "@react-three/drei";
+import { PerspectiveCamera, PresentationControls } from "@react-three/drei";
 import Planet from "@/components/Planet";
 import Loader from "@/components/Loader";
+import { Perf } from "r3f-perf";
+import { Leva, useControls } from "leva";
 
 type Props = { params: { planet: string } };
 enum PerspectiveEnum {
@@ -125,18 +127,23 @@ export default function page({ params }: Props) {
             </PlanetImage>
           )}
           {perspective === PerspectiveEnum["3D"] && (
-            <div className="h-[305px] w-full">
+            <div className="h-[305px] lg:h-[420px] w-full">
               <Canvas>
-                <OrbitControls makeDefault />
-                <ambientLight intensity={0.1} />
-                <directionalLight color="yellow" position={[-10, 0, 2]} />
-                <PresentationControls>
+                {/* <Leva hidden /> */}
+                <Perf position={"top-left"} />
+                {/* <OrbitControls makeDefault /> */}
+                <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+                <PresentationControls
+                  cursor={true}
+                  polar={[(-5 * Math.PI) / 12, (5 * Math.PI) / 12]}
+                  speed={2}
+                >
                   <Suspense fallback={<Loader />}>
                     <Planet
                       vertex={shaders.vertex}
                       fragment={shaders.fragment}
                       textures={planetData!.textures}
-                      uniforms={planetData!.uniforms}
+                      uniforms={planetData.uniforms}
                     />
                   </Suspense>
                 </PresentationControls>
@@ -147,15 +154,15 @@ export default function page({ params }: Props) {
             options={Object.keys(PerspectiveEnum)}
             onChange={async (val) => {
               // Get shaders on demand
+              let selectedShader = params.planet.toLowerCase();
+              if (selectedShader !== "earth") {
+                selectedShader = "genericPlanet";
+              }
               const vertexShader = (
-                await import(
-                  `@/shaders/${params.planet.toLowerCase()}/vertex.glsl`
-                )
+                await import(`@/shaders/${selectedShader}/vertex.glsl`)
               ).default;
               const fragmentShader = (
-                await import(
-                  `@/shaders/${params.planet.toLowerCase()}/fragment.glsl`
-                )
+                await import(`@/shaders/${selectedShader}/fragment.glsl`)
               ).default;
 
               setPerspective(val as PerspectiveEnum);

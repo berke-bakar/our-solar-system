@@ -1,7 +1,10 @@
 "use client";
 import {
+  BackSide,
   Color,
   Mesh,
+  ShaderMaterial,
+  SphereGeometry,
   SRGBColorSpace,
   Uniform,
   Vector2,
@@ -10,7 +13,9 @@ import {
 } from "three";
 import { useTexture } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
+import atmosphereVertexShader from "@/shaders/atmosphere/vertex.glsl";
+import atmosphereFragmentShader from "@/shaders/atmosphere/fragment.glsl";
 
 type TextureType = {
   key: string;
@@ -68,6 +73,7 @@ export default function Planet({
   }
 
   const meshRef = useRef<Mesh>(null);
+  const materialRef = useRef<ShaderMaterial>(null);
   const texturesSrcs = textures!.map((val) => val.src);
   const loadedTextures = useTexture(texturesSrcs);
   loadedTextures.forEach((val) => {
@@ -82,28 +88,34 @@ export default function Planet({
     } as UniformType;
   });
   const combinedUniforms = combineUniforms(uniforms!, textureUniforms);
+  const planetGeometry = useMemo(() => {
+    return new SphereGeometry(3, 48, 48);
+  }, []);
 
   useFrame((state, delta) => {
     meshRef.current!.rotation.y += delta * 0.1;
   });
 
   return (
-    <mesh ref={meshRef}>
-      <sphereGeometry args={[2, 64, 64]} />
-      <shaderMaterial
-        vertexShader={vertex}
-        fragmentShader={fragment}
-        uniforms={combinedUniforms}
-      />
-    </mesh>
+    <group>
+      <mesh ref={meshRef} geometry={planetGeometry}>
+        {/* <sphereGeometry args={[3, 64, 64]} /> */}
+        <shaderMaterial
+          vertexShader={vertex}
+          fragmentShader={fragment}
+          ref={materialRef}
+          uniforms={combinedUniforms}
+        />
+      </mesh>
+      <mesh scale={1.06} geometry={planetGeometry}>
+        <shaderMaterial
+          vertexShader={atmosphereVertexShader}
+          fragmentShader={atmosphereFragmentShader}
+          side={BackSide}
+          transparent
+          uniforms={combineUniforms(uniforms)}
+        />
+      </mesh>
+    </group>
   );
 }
-
-// {
-//   uDayTexture: new Uniform(dayTexture),
-//   uNightTexture: new Uniform(nightTexture),
-//   uSpecularCloudsTexture: new Uniform(specularTexture),
-//   uSunDirection: new Uniform(new Vector3(0.5, 0, 0.9)),
-//   uAtmosphereDayColor: new Uniform(new Color("#00aaff")),
-//   uAtmosphereTwilightColor: new Uniform(new Color("#ff6600")),
-// }

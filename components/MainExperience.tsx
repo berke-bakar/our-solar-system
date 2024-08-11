@@ -112,7 +112,7 @@ export default function MainExperience({}: MainExperienceProps) {
             position={buttonPosition}
             width={buttonWidth}
             className={
-              "font-spartan select-none cursor-pointer font-bold text-sm md:text-sm min-w-[13ch] text-center"
+              "font-spartan select-none cursor-pointer font-bold text-sm md:text-sm min-w-[13ch] text-center xl:text-lg"
             }
             color="#6f2ed6"
             onClick={(e) => {
