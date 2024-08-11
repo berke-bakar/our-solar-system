@@ -21,8 +21,6 @@ export default function Navbar({
   const [showDrawer, setShowDrawer] = useState(false);
   const pathname = usePathname();
 
-  const isMobile = window.matchMedia("(max-width: 768px)").matches;
-
   if (names.length != links.length)
     throw new Error("names and links props must have same length");
   return (
@@ -70,10 +68,10 @@ export default function Navbar({
           document.body.classList.toggle("overflow-hidden");
         }}
       />
-      {isMobile && (
+      {
         <div
           className={cn(
-            "absolute top-[68px] md:top-[160px] lg:top-[85px] transition-all w-dvw h-dvh px-6 bg-[#070722] duration-700",
+            "absolute md:hidden top-[68px] md:top-[160px] lg:top-[85px] transition-all w-dvw h-dvh px-6 bg-[#070722] duration-700",
             {
               "-left-full": !showDrawer,
               "left-0": showDrawer,
@@ -104,7 +102,7 @@ export default function Navbar({
             })}
           </ul>
         </div>
-      )}
+      }
     </nav>
   );
 }

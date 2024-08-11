@@ -16,6 +16,13 @@ import { useRouter } from "next/navigation";
 type MainExperienceProps = {};
 
 export default function MainExperience({}: MainExperienceProps) {
+  let isTablet = false;
+  let isDesktop = false;
+  if (typeof window !== "undefined") {
+    isTablet = window.matchMedia("(min-width: 768px)").matches;
+    isDesktop = window.matchMedia("(min-width: 1024px)").matches;
+  }
+
   const {
     moonPosition,
     earthPosition,
@@ -24,17 +31,30 @@ export default function MainExperience({}: MainExperienceProps) {
     html1Position,
     html2Position,
     buttonPosition,
+    buttonWidth,
+    buttonRotationIntensity,
   } = useControls({
     moonPosition: [0, 0, 0],
     earthPosition: [-260, 100, -265],
     earthRadius: 110,
     moonRadius: 30,
-    html1Position: [-25, 51, 2],
-    // html1Position: [-9, 39, 0], // Desktop
-    html2Position: [-24, 17, -3],
-    // html2Position: [-9, 31, 0], // Desktop
-    // buttonPosition: [-7, 32, 0], // Desktop
-    buttonPosition: [-9, 28, 12],
+    html1Position: isDesktop
+      ? [-13, 41, 0]
+      : isTablet
+      ? [-15, 41, 0]
+      : [-25, 51, 2],
+    html2Position: isDesktop
+      ? [-12, 30, 0]
+      : isTablet
+      ? [-14, 29, 0]
+      : [-24, 17, -3],
+    buttonPosition: isDesktop
+      ? [-10, 32, 0]
+      : isTablet
+      ? [-11, 31, 0]
+      : [-9, 28, 12],
+    buttonWidth: isDesktop || isTablet ? 3 : 2,
+    buttonRotationIntensity: isDesktop ? 0.5 : isTablet ? 0.2 : 0.2,
   });
 
   const router = useRouter();
@@ -66,16 +86,16 @@ export default function MainExperience({}: MainExperienceProps) {
             position={new Vector3(...html1Position)}
             zIndexRange={[0, 0]}
           >
-            <h1 className="text-5xl lg:text-[80px]">
+            <h1 className="text-5xl 2xl:text-[80px] xl:text-[60px] lg:text-[40px]">
               Explore the Solar System
             </h1>
             <br />
-            <h2 className="text-xl lg:text-[40px]">
+            <h2 className="text-xl 2xl:text-[40px] xl:text-[30px] lg:text-[20px]">
               Home to our beloved Blue Marble and many more...
             </h2>
             <br />
             <br />
-            <p className="text-sm lg:text-[1.5rem] max-w-[65ch] leading-normal first-letter:text-[2rem] first-letter:font-bold">
+            <p className="text-sm md:text-[0.9rem] lg:text-[1rem] 2xl:text-[1.5rem] max-w-[65ch] leading-normal first-letter:text-[2rem] first-letter:font-bold">
               {" "}
               Embark on an adventure through our cosmic neighborhood and uncover
               the mysteries of our solar system! We're naturally drawn to the
@@ -87,13 +107,12 @@ export default function MainExperience({}: MainExperienceProps) {
             </p>
           </Html>
           <FloatingButton
-            // rotationIntensity={0.5} // Desktop
-            rotationIntensity={0.2}
+            rotationIntensity={buttonRotationIntensity}
             floatingRange={[-0.1, 0.1]}
             position={buttonPosition}
-            width={2}
+            width={buttonWidth}
             className={
-              "font-spartan select-none cursor-pointer font-bold text-sm md:text-xl min-w-[13ch] text-center"
+              "font-spartan select-none cursor-pointer font-bold text-sm md:text-sm min-w-[13ch] text-center"
             }
             color="#6f2ed6"
             onClick={(e) => {
