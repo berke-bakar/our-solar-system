@@ -129,7 +129,7 @@
       },
       {
         "key": "uSpecularCloudsTexture",
-        "src": "/earth/specularClouds.jpg"
+        "src": "/earth/specularClouds.webp"
       }
     ],
     "uniforms": [

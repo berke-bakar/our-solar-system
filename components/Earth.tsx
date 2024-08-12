@@ -34,7 +34,7 @@ export default function Earth({
   const [dayTexture, nightTexture, specularTexture] = useTexture([
     "/earth/day.jpg",
     "/earth/night.jpg",
-    "/earth/specularClouds.jpg",
+    "/earth/specularClouds.webp",
   ]);
 
   useFrame((state, delta) => {
