@@ -23,17 +23,17 @@ export default function MainExperience({}: MainExperienceProps) {
   const earthRadius = 110;
   const moonRadius = 30;
   const html1Position = isDesktop
-    ? [-13, 41, 0]
+    ? [-13, 40, 0]
     : isTablet
     ? [-15, 41, 0]
     : [-25, 51, 2];
   const html2Position = isDesktop
-    ? [-12, 30, 0]
+    ? [-12, 27, 0]
     : isTablet
     ? [-14, 29, 0]
     : [-24, 17, -3];
   const buttonPosition = isDesktop
-    ? [-10, 32, 0]
+    ? [-10, 29.5, 0]
     : isTablet
     ? [-11, 31, 0]
     : [-9, 28, 12];
