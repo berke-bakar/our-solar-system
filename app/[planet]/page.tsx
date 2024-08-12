@@ -148,6 +148,7 @@ export default function page({ params }: Props) {
                       fragment={shaders.fragment}
                       textures={planetData!.textures}
                       uniforms={planetData.uniforms}
+                      atmosphereScale={planetData.atmosphereScale}
                     />
                     {planetData.ring && (
                       <PlanetRing

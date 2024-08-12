@@ -32,7 +32,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -44,7 +44,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#68696d"
       }
-    ]
+    ],
+    "atmosphereScale": 0
   },
   {
     "name": "Venus",
@@ -79,7 +80,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [-0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -91,7 +92,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#a57c1b"
       }
-    ]
+    ],
+    "atmosphereScale": 1.06
   },
   {
     "name": "Earth",
@@ -146,7 +148,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#ff6600"
       }
-    ]
+    ],
+    "atmosphereScale": 1.08
   },
   {
     "name": "Mars",
@@ -181,7 +184,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -193,7 +196,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#c1440e"
       }
-    ]
+    ],
+    "atmosphereScale": 1.07
   },
   {
     "name": "Jupiter",
@@ -228,7 +232,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -240,7 +244,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#c99039"
       }
-    ]
+    ],
+    "atmosphereScale": 1.18
   },
   {
     "name": "Saturn",
@@ -275,7 +280,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -292,7 +297,8 @@
       "texture": "/saturn/ringTexture.png",
       "innerRadius": 4,
       "outerRadius": 7
-    }
+    },
+    "atmosphereScale": 1.15
   },
   {
     "name": "Uranus",
@@ -327,7 +333,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -339,7 +345,8 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#2e84ce"
       }
-    ]
+    ],
+    "atmosphereScale": 1.2
   },
   {
     "name": "Neptune",
@@ -374,7 +381,7 @@
       {
         "type": "vec3",
         "key": "uSunDirection",
-        "value": [0.5, 0, 0.9]
+        "value": [-0.6, 0, 0.9]
       },
       {
         "type": "color",
@@ -386,6 +393,7 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#1f2255"
       }
-    ]
+    ],
+    "atmosphereScale": 1.15
   }
 ]

@@ -1,5 +1,6 @@
 "use client";
 import {
+  AdditiveBlending,
   BackSide,
   Color,
   Mesh,
@@ -33,6 +34,7 @@ type PlanetProps = {
   fragment?: string;
   textures: TextureType[];
   uniforms: UniformType[];
+  atmosphereScale: number;
 };
 
 export default function Planet({
@@ -40,6 +42,7 @@ export default function Planet({
   fragment,
   textures,
   uniforms,
+  atmosphereScale,
 }: PlanetProps) {
   if (!vertex || !fragment) return null;
 
@@ -100,7 +103,6 @@ export default function Planet({
     <group rotation={[0, -0.3, 0]}>
       {/* Planet mesh */}
       <mesh ref={meshRef} geometry={planetGeometry}>
-        {/* <sphereGeometry args={[3, 64, 64]} /> */}
         <shaderMaterial
           vertexShader={vertex}
           fragmentShader={fragment}
@@ -109,13 +111,15 @@ export default function Planet({
         />
       </mesh>
       {/* Atmosphere mesh */}
-      <mesh scale={1.06} geometry={planetGeometry}>
+      <mesh scale={atmosphereScale} geometry={planetGeometry}>
         <shaderMaterial
           vertexShader={atmosphereVertexShader}
           fragmentShader={atmosphereFragmentShader}
           side={BackSide}
           transparent
           uniforms={combineUniforms(uniforms)}
+          depthWrite={false}
+          blending={AdditiveBlending}
         />
       </mesh>
     </group>
