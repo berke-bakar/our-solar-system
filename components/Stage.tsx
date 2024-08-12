@@ -1,7 +1,6 @@
 "use client";
 import { PerspectiveCamera } from "@react-three/drei";
 import React, { useEffect, useRef } from "react";
-import { useControls } from "leva";
 import { Euler, Vector3 } from "three";
 
 type Props = {};
@@ -11,28 +10,18 @@ export default function Stage({}: Props) {
   const isMobile = window.matchMedia("(min-width: 320px)");
   const isTablet = window.matchMedia("(min-width: 768px)");
   const isDesktop = window.matchMedia("(min-width: 1024px)");
-  const { cameraPosition, cameraRotation, cameraFov } = useControls({
-    cameraPosition: {
-      value: {
-        x: isDesktop ? -6 : isTablet ? -6 : -13,
-        y: isDesktop ? 30 : isTablet ? 30 : 27,
-        z: isDesktop ? 17 : isTablet ? 17 : 12,
-      },
-      joystick: true,
-    },
-    cameraRotation: {
-      value: isDesktop.matches
-        ? [0.145, 0.229, 0]
-        : isTablet.matches
-        ? [0.145, 0.229, 0]
-        : [0.145, 0.45, 0],
-      joystick: true,
-    },
-    cameraFov: {
-      value: isDesktop.matches ? 50 : isTablet.matches ? 75 : 90,
-      step: 1,
-    },
-  });
+  const cameraPosition = {
+    x: isDesktop ? -6 : isTablet ? -6 : -13,
+    y: isDesktop ? 30 : isTablet ? 30 : 27,
+    z: isDesktop ? 17 : isTablet ? 17 : 12,
+  };
+  const cameraRotation = isDesktop.matches
+    ? [0.145, 0.229, 0]
+    : isTablet.matches
+    ? [0.145, 0.229, 0]
+    : [0.145, 0.45, 0];
+
+  const cameraFov = isDesktop.matches ? 50 : isTablet.matches ? 75 : 90;
 
   const handleResize = (e: MediaQueryListEvent) => {
     if (e.matches) {
@@ -79,7 +68,7 @@ export default function Stage({}: Props) {
           new Vector3(cameraPosition.x, cameraPosition.y, cameraPosition.z)
         }
         fov={cameraFov}
-        rotation={new Euler(...cameraRotation, "XYZ")}
+        rotation={new Euler(...cameraRotation)}
         near={0.1}
         far={500}
       />

@@ -7,8 +7,6 @@ import Earth from "./Earth";
 import FloatingButton from "./FloatingButton";
 import { Suspense } from "react";
 import { Vector3 } from "three";
-import { Perf } from "r3f-perf";
-import { Leva, useControls } from "leva";
 import { Html } from "@react-three/drei";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -23,47 +21,33 @@ export default function MainExperience({}: MainExperienceProps) {
     isDesktop = window.matchMedia("(min-width: 1024px)").matches;
   }
 
-  const {
-    moonPosition,
-    earthPosition,
-    earthRadius,
-    moonRadius,
-    html1Position,
-    html2Position,
-    buttonPosition,
-    buttonWidth,
-    buttonRotationIntensity,
-  } = useControls({
-    moonPosition: [0, 0, 0],
-    earthPosition: [-260, 100, -265],
-    earthRadius: 110,
-    moonRadius: 30,
-    html1Position: isDesktop
-      ? [-13, 41, 0]
-      : isTablet
-      ? [-15, 41, 0]
-      : [-25, 51, 2],
-    html2Position: isDesktop
-      ? [-12, 30, 0]
-      : isTablet
-      ? [-14, 29, 0]
-      : [-24, 17, -3],
-    buttonPosition: isDesktop
-      ? [-10, 32, 0]
-      : isTablet
-      ? [-11, 31, 0]
-      : [-9, 28, 12],
-    buttonWidth: isDesktop || isTablet ? 3 : 2,
-    buttonRotationIntensity: isDesktop ? 0.5 : isTablet ? 0.2 : 0.2,
-  });
+  const moonPosition = [0, 0, 0];
+  const earthPosition = [-260, 100, -265];
+  const earthRadius = 110;
+  const moonRadius = 30;
+  const html1Position = isDesktop
+    ? [-13, 41, 0]
+    : isTablet
+    ? [-15, 41, 0]
+    : [-25, 51, 2];
+  const html2Position = isDesktop
+    ? [-12, 30, 0]
+    : isTablet
+    ? [-14, 29, 0]
+    : [-24, 17, -3];
+  const buttonPosition = isDesktop
+    ? [-10, 32, 0]
+    : isTablet
+    ? [-11, 31, 0]
+    : [-9, 28, 12];
+  const buttonWidth = isDesktop || isTablet ? 3 : 2;
+  const buttonRotationIntensity = isDesktop ? 0.5 : isTablet ? 0.2 : 0.2;
 
   const router = useRouter();
 
   return (
     <>
       <Canvas>
-        {/* <Leva hidden /> */}
-        {/* <Perf position={"top-left"} /> */}
         <Suspense fallback={<Loader className="text-[4rem]" />}>
           <Stage />
           <Moon
@@ -109,7 +93,7 @@ export default function MainExperience({}: MainExperienceProps) {
           <FloatingButton
             rotationIntensity={buttonRotationIntensity}
             floatingRange={[-0.1, 0.1]}
-            position={buttonPosition}
+            position={buttonPosition as [number, number, number]}
             width={buttonWidth}
             className={
               "font-spartan select-none cursor-pointer font-bold text-sm md:text-sm min-w-[13ch] text-center xl:text-lg"

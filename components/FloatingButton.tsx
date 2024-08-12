@@ -1,7 +1,6 @@
 import { cn } from "@/utils/utils";
 import { Float, Html, RoundedBox, useCursor } from "@react-three/drei";
 import { ThreeEvent, useThree } from "@react-three/fiber";
-import { useControls } from "leva";
 import React, { useEffect, useRef, useState } from "react";
 import { Mesh, Vector3 } from "three";
 

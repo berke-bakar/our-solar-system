@@ -10,7 +10,6 @@ import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, PresentationControls } from "@react-three/drei";
 import Planet from "@/components/Planet";
 import Loader from "@/components/Loader";
-import { Perf } from "r3f-perf";
 import { PlanetContext } from "@/context/PlanetContext";
 import PlanetRing from "@/components/PlanetRing";
 import { Euler } from "three";
@@ -133,9 +132,6 @@ export default function page({ params }: Props) {
           {perspective === PerspectiveEnum["3D"] && (
             <div className="h-[305px] lg:h-[420px] w-full">
               <Canvas>
-                {/* <Leva hidden /> */}
-                <Perf position={"top-left"} />
-                {/* <OrbitControls makeDefault /> */}
                 <PerspectiveCamera makeDefault position={[0, 0, 15]} />
                 <PresentationControls
                   cursor={true}
