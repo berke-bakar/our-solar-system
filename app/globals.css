@@ -1,6 +1,82 @@
+@import url(https://fonts.bunny.net/css?family=antonio:400|league-spartan:400,700);
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
+  /* Colors */
+  --clr-text: 0deg, 0%, 100%;
+  --clr-slate-dark: 240deg, 67%, 8%;
+  --clr-slate-medium: 240deg, 17%, 26%;
+  --clr-slate-light: 240deg, 6%, 54%;
+  /* Planetary colors */
+  --clr-mercury: 194deg, 48%, 49%;
+  --clr-venus: 33deg, 82%, 61%;
+  --clr-earth: 263deg, 67%, 51%;
+  --clr-mars: 10deg, 63%, 51%;
+  --clr-jupiter: 2deg, 68%, 53%;
+  --clr-saturn: 17deg, 73%, 46%;
+  --clr-uranus: 169deg, 73%, 44%;
+  --clr-neptune: 222deg, 87%, 56%;
+
+  /* Font */
+  --fnt-title: "Antonio", sans-serif;
+  --fnt-desc: "League Spartan", sans-serif;
+}
+
+body {
+  background-image: url("/assets/background-stars.svg");
+  background-color: hsl(var(--clr-slate-dark));
+  color: hsl(var(--clr-text));
+  font-family: var(--fnt-title);
+}
+
+h1,
+h2,
+h3,
+h4 {
+  text-transform: uppercase;
+  color: hsl(var(--clr-text));
+}
+
+h1,
+h2 {
+  font-family: var(--fnt-title);
+  font-weight: 400;
+}
+
+h3,
+h4 {
+  font-family: var(--fnt-desc);
+  font-weight: 700;
+  line-height: 25px;
+}
+
+h1 {
+  font-size: 5rem;
+  line-height: 103px;
+}
+
+h2 {
+  font-size: 2.5rem;
+  line-height: 52px;
+  letter-spacing: -1.5px;
+}
+
+h3 {
+  font-size: 0.75rem;
+  letter-spacing: 2.6px;
+}
+
+h4 {
+  font-size: 0.6875rem;
+  letter-spacing: 1px;
+}
+
+p {
+  color: hsl(var(--clr-text));
+  font-family: var(--fnt-desc);
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 25px;
 }
