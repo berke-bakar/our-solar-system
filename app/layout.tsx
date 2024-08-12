@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import TwinklingStarsBackground from "@/components/TwinklingStarsBackground";
 import FooterComp from "@/components/FooterComp";
 import { PlanetInfoProvider } from "@/context/PlanetContext";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "☀️Our Lovely System🪐",
@@ -30,6 +31,20 @@ export default function RootLayout({
 
   return (
     <html lang="en">
+      <Head>
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link
+          rel="apple-touch-icon"
+          href="/apple-touch-icon.png"
+          type="image/png"
+          sizes="any"
+        />
+        <link rel="preconnect" href="https://fonts.bunny.net" />
+        <link
+          href="https://fonts.bunny.net/css?family=antonio:400|league-spartan:400,700"
+          rel="stylesheet"
+        />
+      </Head>
       <body className="flex flex-col">
         <TwinklingStarsBackground
           avgAnimDurationMs={5000}
