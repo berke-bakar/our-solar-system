@@ -13,31 +13,31 @@ Welcome to  [Our Solar System!](https://our-solar-system.vercel.app) This projec
 
 To run this project locally, follow these steps:
 
-**1.****Clone the Repository** :
+**1.Clone the Repository** :
 
 ```
 git clone https://github.com/berke-bakar/our-solar-system.git
 ```
 
-**2.****Navigate to the Project Directory** :
+**2.Navigate to the Project Directory** :
 
 ```
 cd our-solar-system
 ```
 
-**3.****Install Dependencies** :
+**3.Install Dependencies** :
 
 ```
 npm install
 ```
 
-**4.****Run the Development Server** :
+**4.Run the Development Server** :
 
 ```
 npm run dev
 ```
 
-**5.****Open Your Browser** and visit `http://localhost:3000` to view the site.
+**5.Open Your Browser and visit `http://localhost:3000` to view the site**
 
 
 ## Screenshots
@@ -50,4 +50,4 @@ npm run dev
 
 ## Credits
 
-[Icon by smalllikeart](`https://www.freepik.com/icon/solar-system_885807#fromView=keyword&page=1&position=0&uuid=0ab49418-c8e7-4fc9-bfe6-6ae104f0b2af`)
+[Icon by smalllikeart](https://www.freepik.com/icon/solar-system_885807#fromView=keyword&page=1&position=0&uuid=0ab49418-c8e7-4fc9-bfe6-6ae104f0b2af)
