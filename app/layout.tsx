@@ -31,20 +31,20 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="lg:mt-[210px]">
-        <TwinklingStarsBackground
+        {/* <TwinklingStarsBackground
           avgAnimDurationMs={5000}
           animVarianceMs={3000}
           fromValues={{ scale: 0.5, alpha: 0.5, rotation: 0 }}
           toValues={{ scale: 2, alpha: 0, rotation: 720 }}
           count={30}
-        />
+        /> */}
         <Navbar
           title="The Solar System"
           names={planetNames}
           links={planetNames}
         />
         <PlanetInfoProvider>{children}</PlanetInfoProvider>
-        <FooterComp />
+        {/* <FooterComp /> */}
       </body>
     </html>
   );

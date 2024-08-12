@@ -12,6 +12,8 @@ import Planet from "@/components/Planet";
 import Loader from "@/components/Loader";
 import { Perf } from "r3f-perf";
 import { PlanetContext } from "@/context/PlanetContext";
+import PlanetRing from "@/components/PlanetRing";
+import { Euler } from "three";
 
 type Props = { params: { planet: string } };
 enum PerspectiveEnum {
@@ -134,7 +136,7 @@ export default function page({ params }: Props) {
                 {/* <Leva hidden /> */}
                 <Perf position={"top-left"} />
                 {/* <OrbitControls makeDefault /> */}
-                <PerspectiveCamera makeDefault position={[0, 0, 10]} />
+                <PerspectiveCamera makeDefault position={[0, 0, 15]} />
                 <PresentationControls
                   cursor={true}
                   polar={[(-5 * Math.PI) / 12, (5 * Math.PI) / 12]}
@@ -147,6 +149,16 @@ export default function page({ params }: Props) {
                       textures={planetData!.textures}
                       uniforms={planetData.uniforms}
                     />
+                    {planetData.ring && (
+                      <PlanetRing
+                        textureSrc={planetData.ring.texture}
+                        innerRadius={planetData.ring.innerRadius}
+                        outerRadius={planetData.ring.outerRadius}
+                        rotation={
+                          new Euler(Math.PI / 2, 0, -Math.PI / 5, "ZXY")
+                        }
+                      />
+                    )}
                   </Suspense>
                 </PresentationControls>
               </Canvas>

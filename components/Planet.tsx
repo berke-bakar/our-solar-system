@@ -97,7 +97,8 @@ export default function Planet({
   });
 
   return (
-    <group>
+    <group rotation={[0, -0.3, 0]}>
+      {/* Planet mesh */}
       <mesh ref={meshRef} geometry={planetGeometry}>
         {/* <sphereGeometry args={[3, 64, 64]} /> */}
         <shaderMaterial
@@ -107,6 +108,7 @@ export default function Planet({
           uniforms={combinedUniforms}
         />
       </mesh>
+      {/* Atmosphere mesh */}
       <mesh scale={1.06} geometry={planetGeometry}>
         <shaderMaterial
           vertexShader={atmosphereVertexShader}

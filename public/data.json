@@ -287,7 +287,12 @@
         "key": "uAtmosphereTwilightColor",
         "value": "#c3924f"
       }
-    ]
+    ],
+    "ring": {
+      "texture": "/saturn/ringTexture.png",
+      "innerRadius": 4,
+      "outerRadius": 7
+    }
   },
   {
     "name": "Uranus",
