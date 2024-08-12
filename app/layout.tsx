@@ -36,7 +36,7 @@ export default function RootLayout({
           animVarianceMs={3000}
           fromValues={{ scale: 0.5, alpha: 0.5, rotation: 0 }}
           toValues={{ scale: 2, alpha: 0, rotation: 720 }}
-          countLimits={[30, 15]}
+          countLimits={[15, 30]}
         />
         <Navbar
           title="The Solar System"

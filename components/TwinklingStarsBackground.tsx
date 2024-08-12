@@ -1,7 +1,8 @@
 "use client";
 import { useAnimationFrame } from "@/hooks/useAnimationFrame";
+import useMediaQuery from "@/hooks/useMediaQuery";
 import { cn, lerp } from "@/utils/utils";
-import { createRef, useRef } from "react";
+import { createRef, useEffect, useRef } from "react";
 
 type AnimatableProps = {
   rotation: number;
@@ -24,9 +25,8 @@ export default function TwinklingStarsBackground({
   toValues,
   countLimits,
 }: AnimationProps) {
-  const count = window.matchMedia("(min-width: 768px)").matches
-    ? countLimits[0]
-    : countLimits[1];
+  let count = useMediaQuery(768) ? countLimits[1] : countLimits[0];
+
   const starRefs = useRef(
     Array.from({ length: count }, (a) => createRef<SVGSVGElement>())
   );
@@ -137,11 +137,19 @@ export default function TwinklingStarsBackground({
     }
   });
 
+  useEffect(() => {
+    // Inital random positioning done here for keeping server-side content matching
+    for (let i = 0; i < count; i++) {
+      const top = Math.round(5 + Math.random() * 90);
+      const left = Math.round(5 + Math.random() * 90);
+      starRefs.current[i].current!.style.top = `${top}%`;
+      starRefs.current[i].current!.style.left = `${left}%`;
+    }
+  }, []);
+
   return (
     <div className="absolute w-full h-full -z-10">
       {starRefs.current.map((val, ind) => {
-        const top = Math.round(5 + Math.random() * 90);
-        const left = Math.round(5 + Math.random() * 90);
         return (
           <svg
             viewBox="0 0 24.00 24.00"
@@ -151,10 +159,6 @@ export default function TwinklingStarsBackground({
             transform="rotate(0)matrix(-1, 0, 0, 1, 0, 0)"
             ref={starRefs.current[ind]}
             className={cn("absolute w-8 scale-50")}
-            style={{
-              top: `${top}%`,
-              left: `${left}%`,
-            }}
             key={ind}
           >
             <g id="SVGRepo_bgCarrier" strokeWidth="0"></g>

@@ -10,16 +10,13 @@ import { Vector3 } from "three";
 import { Html } from "@react-three/drei";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import useMediaQuery from "@/hooks/useMediaQuery";
 
 type MainExperienceProps = {};
 
 export default function MainExperience({}: MainExperienceProps) {
-  let isTablet = false;
-  let isDesktop = false;
-  if (typeof window !== "undefined") {
-    isTablet = window.matchMedia("(min-width: 768px)").matches;
-    isDesktop = window.matchMedia("(min-width: 1024px)").matches;
-  }
+  let isTablet = useMediaQuery(768);
+  let isDesktop = useMediaQuery(1024);
 
   const moonPosition = [0, 0, 0];
   const earthPosition = [-260, 100, -265];
