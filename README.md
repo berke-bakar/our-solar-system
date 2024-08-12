@@ -1,36 +1,53 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Our Solar System
 
-## Getting Started
+Welcome to  [Our Solar System!](https://our-solar-system.vercel.app) This project is an interactive website showcasing fascinating facts about the planets in our solar system.
 
-First, run the development server:
+## Technologies Used
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+* **Three.js** : A JavaScript library for creating 3D graphics in the browser.
+* **React Three Fiber** : A React renderer for Three.js, enabling building scenes declaratively.
+* **Next.js** : A React meta-framework for server-side rendering and static site generation and more...
+* **Tailwind CSS** : A utility-first CSS framework for rapid UI development.
+
+## Installation
+
+To run this project locally, follow these steps:
+
+**1.****Clone the Repository** :
+
+```
+git clone https://github.com/berke-bakar/our-solar-system.git
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**2.****Navigate to the Project Directory** :
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+cd our-solar-system
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+**3.****Install Dependencies** :
 
-## Learn More
+```
+npm install
+```
 
-To learn more about Next.js, take a look at the following resources:
+**4.****Run the Development Server** :
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+npm run dev
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+**5.****Open Your Browser** and visit `http://localhost:3000` to view the site.
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Screenshots
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![1723490694995](image/README/1723490694995.png)
+
+![1723490701597](image/README/1723490701597.png)
+
+![1723490707796](image/README/1723490707796.png)
+
+## Credits
+
+[Icon by smalllikeart](`https://www.freepik.com/icon/solar-system_885807#fromView=keyword&page=1&position=0&uuid=0ab49418-c8e7-4fc9-bfe6-6ae104f0b2af`)
