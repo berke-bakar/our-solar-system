@@ -121,11 +121,11 @@
     "textures": [
       {
         "key": "uDayTexture",
-        "src": "/earth/day.jpg"
+        "src": "/earth/day.webp"
       },
       {
         "key": "uNightTexture",
-        "src": "/earth/night.jpg"
+        "src": "/earth/night.webp"
       },
       {
         "key": "uSpecularCloudsTexture",

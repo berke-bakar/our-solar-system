@@ -32,8 +32,8 @@ export default function Earth({
   }, [radius, heightSegments, widthSegments]);
 
   const [dayTexture, nightTexture, specularTexture] = useTexture([
-    "/earth/day.jpg",
-    "/earth/night.jpg",
+    "/earth/day.webp",
+    "/earth/night.webp",
     "/earth/specularClouds.webp",
   ]);
 
