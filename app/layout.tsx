@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import "./reset.css";
 import Navbar from "@/components/Navbar";
-import data from "@/public/data.json";
 import TwinklingStarsBackground from "@/components/TwinklingStarsBackground";
 import FooterComp from "@/components/FooterComp";
+import { PlanetInfoProvider } from "@/context/PlanetContext";
 
 export const metadata: Metadata = {
   title: "☀️Our Lovely System🪐",
@@ -17,23 +17,33 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const planetNames = data.map((val) => val.name.toLowerCase());
+  const planetNames = [
+    "mercury",
+    "venus",
+    "earth",
+    "mars",
+    "jupiter",
+    "saturn",
+    "uranus",
+    "neptune",
+  ];
+
   return (
     <html lang="en">
-      <body>
+      <body className="lg:mt-[210px]">
         <TwinklingStarsBackground
           avgAnimDurationMs={5000}
           animVarianceMs={3000}
           fromValues={{ scale: 0.5, alpha: 0.5, rotation: 0 }}
           toValues={{ scale: 2, alpha: 0, rotation: 720 }}
-          count={50}
+          count={30}
         />
         <Navbar
           title="The Solar System"
           names={planetNames}
           links={planetNames}
         />
-        {children}
+        <PlanetInfoProvider>{children}</PlanetInfoProvider>
         <FooterComp />
       </body>
     </html>

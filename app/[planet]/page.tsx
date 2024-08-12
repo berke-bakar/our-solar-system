@@ -1,18 +1,17 @@
 "use client";
-import data from "@/public/data.json";
 import { notFound } from "next/navigation";
 import InfoBox from "@/components/InfoBox";
 import Button from "@/components/Button";
 import PlanetImage from "@/components/PlanetImage";
 import { cn, capitalize } from "@/utils/utils";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useContext, useState } from "react";
 import Switch from "@/components/Switch";
 import { Canvas } from "@react-three/fiber";
 import { PerspectiveCamera, PresentationControls } from "@react-three/drei";
 import Planet from "@/components/Planet";
 import Loader from "@/components/Loader";
 import { Perf } from "r3f-perf";
-import { Leva, useControls } from "leva";
+import { PlanetContext } from "@/context/PlanetContext";
 
 type Props = { params: { planet: string } };
 enum PerspectiveEnum {
@@ -25,16 +24,19 @@ type ShadersType = {
 };
 
 export default function page({ params }: Props) {
+  const planetsData = useContext(PlanetContext);
   const [activeTab, setActiveTab] = useState<number>(1);
+
   const [perspective, setPerspective] = useState<PerspectiveEnum>(
-    PerspectiveEnum["2D"] // TODO: Change later
+    PerspectiveEnum["2D"]
   );
+
   const [shaders, setShaders] = useState<ShadersType>({
     vertex: undefined,
     fragment: undefined,
   });
 
-  const planetData = data.find(
+  const planetData = planetsData.find(
     (val) => val.name.toLowerCase() === params.planet.toLowerCase()
   );
 

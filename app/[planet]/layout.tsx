@@ -1,6 +1,4 @@
 import type { Metadata, ResolvingMetadata } from "next";
-import data from "@/public/data.json";
-import { notFound } from "next/navigation";
 import { capitalize } from "@/utils/utils";
 
 type PlanetLayoutProps = React.PropsWithChildren<{
@@ -20,11 +18,5 @@ export async function generateMetadata(
 }
 
 export default function RootLayout({ children, params }: PlanetLayoutProps) {
-  if (
-    !data.some((val) => val.name.toLowerCase() === params.planet.toLowerCase())
-  ) {
-    notFound();
-  }
-
   return <main>{children}</main>;
 }
