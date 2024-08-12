@@ -66,7 +66,7 @@ export default function MainExperience({}: MainExperienceProps) {
           />
 
           <Html
-            className="h-fit w-[90dvw] lg:w-[50dvw] lg:h-1/2"
+            className="h-fit w-[90dvw] lg:w-[50dvw] lg:h-1/2 lg:mt-[80px]"
             position={new Vector3(...html1Position)}
             zIndexRange={[0, 0]}
           >

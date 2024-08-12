@@ -101,7 +101,7 @@ export default function page({ params }: Props) {
         </button>
       </div>
 
-      <div className="flex flex-col md:mt-[160px] lg:flex-row lg:justify-center lg:max-w-[1110px] lg:mx-auto lg:mt-[210px]">
+      <div className="flex flex-col lg:flex-row lg:justify-center lg:max-w-[1110px] lg:mx-auto lg:mt-[210px]">
         <div className="flex flex-col justify-center items-center lg:grow lg:gap-4 mb-4 lg:mb-0">
           {perspective === PerspectiveEnum["2D"] && (
             <PlanetImage className="max-h-[304px] lg:grow lg:max-h-full aspect-square">

@@ -18,5 +18,5 @@ export async function generateMetadata(
 }
 
 export default function RootLayout({ children, params }: PlanetLayoutProps) {
-  return <main>{children}</main>;
+  return <main className="lg:mt-[0px] md:mt-[160px]">{children}</main>;
 }

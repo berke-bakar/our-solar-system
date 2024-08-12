@@ -14,7 +14,7 @@ type AnimationProps = {
   animVarianceMs: number;
   fromValues: AnimatableProps;
   toValues: AnimatableProps;
-  count: number;
+  countLimits: [number, number];
 };
 
 export default function TwinklingStarsBackground({
@@ -22,8 +22,11 @@ export default function TwinklingStarsBackground({
   animVarianceMs,
   fromValues,
   toValues,
-  count,
+  countLimits,
 }: AnimationProps) {
+  const count = window.matchMedia("(min-width: 768px)").matches
+    ? countLimits[0]
+    : countLimits[1];
   const starRefs = useRef(
     Array.from({ length: count }, (a) => createRef<SVGSVGElement>())
   );
