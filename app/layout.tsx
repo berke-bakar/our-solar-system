@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import TwinklingStarsBackground from "@/components/TwinklingStarsBackground";
 import FooterComp from "@/components/FooterComp";
 import { PlanetInfoProvider } from "@/context/PlanetContext";
+import { Analytics } from "@vercel/analytics/react";
 
 export const metadata: Metadata = {
   title: "☀️Our Lovely System🪐",
@@ -59,6 +60,7 @@ export default function RootLayout({
         />
         <PlanetInfoProvider>{children}</PlanetInfoProvider>
         <FooterComp className="grow" />
+        <Analytics />
       </body>
     </html>
   );
